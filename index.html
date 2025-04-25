@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DiffFNO: Diffusion Fourier Neural Operator</title>
+  <style>
+    /* Reset & 全局 */
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: "Helvetica Neue", Arial, sans-serif; line-height:1.6; color:#333; }
+    a { color:#0066cc; text-decoration:none; }
+    a:hover { text-decoration:underline; }
+    img, video { max-width:100%; display:block; margin:0 auto; }
+
+    /* 容器 */
+    .container { width:90%; max-width:1000px; margin:0 auto; padding:2rem 0; }
+
+    /* 导航栏 */
+    header { background:#fff; border-bottom:1px solid #eee; position:sticky; top:0; z-index:1000; }
+    nav { display:flex; justify-content:space-between; align-items:center; padding:0.5rem 1rem; }
+    .nav-left h1 { font-size:1.5rem; }
+    .nav-right a { margin-left:1rem; font-weight:500; }
+
+    /* 封面 */
+    .hero { text-align:center; padding:4rem 1rem; }
+    .hero h1 { font-size:2.5rem; margin-bottom:0.5rem; }
+    .hero p { font-size:1.1rem; color:#666; margin-bottom:1.5rem; }
+
+    /* 分区标题 */
+    section { margin-top:3rem; }
+    section h2 { font-size:2rem; margin-bottom:1rem; border-bottom:2px solid #eee; padding-bottom:0.5rem; }
+
+    /* Demo 栏 */
+    .demo-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    .demo-grid .item { text-align:center; }
+
+    /* 结果展示 */
+    .carousel { display:flex; overflow-x:auto; gap:1rem; padding:1rem 0; }
+    .carousel img { width:300px; height:auto; flex-shrink:0; border:1px solid #ddd; }
+
+    /* 链接列表 */
+    ul.links { list-style:none; }
+    ul.links li { margin:0.5rem 0; }
+
+    /* 代码块 */
+    pre { background:#f7f7f7; padding:1rem; overflow-x:auto; font-size:0.9rem; }
+
+    /* 页脚 */
+    footer { text-align:center; font-size:0.8rem; color:#999; margin:3rem 0; border-top:1px solid #eee; padding-top:1rem; }
+  </style>
+</head>
+<body>
+
+  <!-- 导航 -->
+  <header>
+    <nav class="container">
+      <div class="nav-left">
+        <h1>DiffFNO</h1>
+      </div>
+      <div class="nav-right">
+        <a href="https://arxiv.org/abs/2411.09911" target="_blank">Paper</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- 封面 -->
+  <section class="hero container">
+    <h1>[CVPR 2025 Oral] Diffusion Fourier Neural Operator for Arbitrary‑Scale Super‑Resolution</h1>
+    <p><strong>Xiaoyi Liu</strong><sup>1</sup>, <strong>Hao Tang</strong><sup>2</sup><br>
+      <sup>1</sup>Washington University in St. Louis &nbsp;|&nbsp; <sup>2</sup>Peking University</p>
+    <!-- 封面示例图 -->
+    <img src="images/difffno-fg1.png" alt="PSNR vs Inference Time">
+  </section>
+
+  <!-- 摘要 -->
+  <section id="paper" class="container">
+    <h2>Abstract</h2>
+    <p>
+      We introduce <strong>DiffFNO</strong>, a novel diffusion framework for arbitrary‑scale super‑resolution
+      strengthened by a Weighted Fourier Neural Operator (WFNO). Mode Rebalancing in WFNO effectively captures
+      critical frequency components, significantly improving the reconstruction of high‑frequency image details.
+      Gated Fusion Mechanism (GFM) adaptively complements WFNO’s spectral features with spatial features from an
+      Attention-based Neural Operator (AttnNO). Adaptive Time‑Step (ATS) ODE solver accelerates inference without
+      sacrificing output quality. Extensive experiments demonstrate that DiffFNO achieves state‑of‑the‑art results,
+      outperforming existing methods by 2–4 dB in PSNR across various scaling factors and generalizing beyond
+      training distributions—all at competitive inference times.
+    </p>
+  </section>
+
+  <!-- Demo -->
+  <section id="demo" class="container">
+    <h2>The DiffFNO Architecture</h2>
+    <!-- <div class="demo-grid"> -->
+      <div class="item">
+        <h3>Architecture</h3>
+        <img src="images/difffno-fg2.png" alt="DiffFNO Architecture">
+        <p>WFNO + AttnNO + ATS ODE Solver</p>
+      </div>
+      
+      <div class="item">
+        <h3>Qualitative</h3>
+        <img src="images/difffno-fg3.png" alt="Qualitative Results">
+        <p>Sharper edges, richer textures</p>
+      </div>
+    <!-- </div> -->
+  </section>
+
+  <!-- 定量结果 -->
+  <section class="container">
+    <h2>Quantitative Results</h2>
+    <img src="images/difffno-psnr.png" alt="PSNR Table">
+    <p style="text-align:center;font-size:0.9rem;color:#555;">
+      Table: PSNR/SSIM on DIV2K validation set across scales ×2–×12.
+    </p>
+  </section>
+
+  <!-- 相关链接 -->
+  <!-- <section class="container">
+    <h2>Related Links</h2>
+    <ul class="links">
+      <li><a href="https://github.com/yourrepo/DiffFNO" target="_blank">GitHub Repository</a></li>
+      <li><a href="https://openreview.net/forum?id=XXXXX" target="_blank">arXiv / OpenReview</a></li>
+      <li><a href="https://doi.org/10.xxxx/xxx" target="_blank">Published Version (TBD)</a></li>
+      <li><a href="https://yourdomain.com/DiffFNO-dataset" target="_blank">Dataset & Benchmarks</a></li>
+    </ul>
+  </section> -->
+
+  <!-- BibTeX -->
+  <section class="container">
+    <h2>BibTeX</h2>
+    <pre>
+@inproceedings{liu2025difffno,
+  title     = {DiffFNO: Diffusion Fourier Neural Operator},
+  author    = {Liu, Xiaoyi and Tang, Hao},
+  booktitle = {CVPR},
+  year      = {2025},
+}
+    </pre>
+  </section>
+
+  <!-- 版权 -->
+  <footer class="container">
+    <p>
+      This website is licensed under Creative Commons Attribution‑ShareAlike 4.0 International.
+      Please link back to this page if you reuse any code.
+    </p>
+    <p>
+      &copy; 2025 Xiaoyi Liu &amp; Hao Tang
+    </p>
+  </footer>
+
+</body>
+</html>
